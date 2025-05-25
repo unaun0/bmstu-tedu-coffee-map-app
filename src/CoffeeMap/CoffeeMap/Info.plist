@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>API_HOST</key>
+	<string>$(API_HOST)</string>
+	<key>API_PATH</key>
+	<string>$(API_PATH)</string>
+	<key>API_PORT</key>
+	<string>$(API_PORT)</string>
+	<key>API_PROTOCOL</key>
+	<string>$(API_PROTOCOL)</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Мы используем ваше местоположение для показа ближайших кофеен</string>
+
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -15,8 +26,6 @@
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
 				</dict>
 			</array>
 		</dict>

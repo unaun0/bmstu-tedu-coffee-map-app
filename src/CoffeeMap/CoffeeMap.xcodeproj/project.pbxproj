@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		899B815E1718E62BF1A424B1 /* Pods_CoffeeMap_CoffeeMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694BFF8D0C975C2DE09673BD /* Pods_CoffeeMap_CoffeeMapUITests.framework */; };
+		AB85EB5D2CF602F779BF9A76 /* Pods_CoffeeMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4D3EE877C73EF1DDB97DAC /* Pods_CoffeeMap.framework */; };
+		F14BFB6AB2EC0C0F4208FD82 /* Pods_CoffeeMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CACE06CD5FCF7BD1181895 /* Pods_CoffeeMapTests.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2065DF752DDD39D000EAE056 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,13 +30,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1486CABC7130E3D37AA9775E /* Pods-CoffeeMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeMapTests.debug.xcconfig"; path = "Target Support Files/Pods-CoffeeMapTests/Pods-CoffeeMapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2065DF5B2DDD39CD00EAE056 /* CoffeeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2065DF742DDD39D000EAE056 /* CoffeeMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoffeeMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2065DF7E2DDD39D000EAE056 /* CoffeeMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoffeeMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3177F35AF35BFEE0FBD1A54D /* Pods-CoffeeMap-CoffeeMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeMap-CoffeeMapUITests.release.xcconfig"; path = "Target Support Files/Pods-CoffeeMap-CoffeeMapUITests/Pods-CoffeeMap-CoffeeMapUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4B4D3EE877C73EF1DDB97DAC /* Pods_CoffeeMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		694BFF8D0C975C2DE09673BD /* Pods_CoffeeMap_CoffeeMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeMap_CoffeeMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EB2404D1EBA3DBFDB54676A /* Pods-CoffeeMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeMap.debug.xcconfig"; path = "Target Support Files/Pods-CoffeeMap/Pods-CoffeeMap.debug.xcconfig"; sourceTree = "<group>"; };
+		88CACE06CD5FCF7BD1181895 /* Pods_CoffeeMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADCE168C4A9CC36D373EB270 /* Pods-CoffeeMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeMapTests.release.xcconfig"; path = "Target Support Files/Pods-CoffeeMapTests/Pods-CoffeeMapTests.release.xcconfig"; sourceTree = "<group>"; };
+		DCD6A5FDC12B07C80DFD4FA4 /* Pods-CoffeeMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeMap.release.xcconfig"; path = "Target Support Files/Pods-CoffeeMap/Pods-CoffeeMap.release.xcconfig"; sourceTree = "<group>"; };
+		E412D07973893AF0E6613B9C /* Pods-CoffeeMap-CoffeeMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeMap-CoffeeMapUITests.debug.xcconfig"; path = "Target Support Files/Pods-CoffeeMap-CoffeeMapUITests/Pods-CoffeeMap-CoffeeMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		2065DF862DDD39D000EAE056 /* Exceptions for "CoffeeMap" folder in "CoffeeMap" target */ = {
+		20569F922DDEE97100AD6A37 /* Exceptions for "CoffeeMap" folder in "CoffeeMap" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +58,7 @@
 		2065DF5D2DDD39CD00EAE056 /* CoffeeMap */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				2065DF862DDD39D000EAE056 /* Exceptions for "CoffeeMap" folder in "CoffeeMap" target */,
+				20569F922DDEE97100AD6A37 /* Exceptions for "CoffeeMap" folder in "CoffeeMap" target */,
 			);
 			path = CoffeeMap;
 			sourceTree = "<group>";
@@ -58,6 +73,11 @@
 			path = CoffeeMapUITests;
 			sourceTree = "<group>";
 		};
+		20BA5A3D2DDD91400062AF72 /* Config */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Config;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB85EB5D2CF602F779BF9A76 /* Pods_CoffeeMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14BFB6AB2EC0C0F4208FD82 /* Pods_CoffeeMapTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899B815E1718E62BF1A424B1 /* Pods_CoffeeMap_CoffeeMapUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,10 +111,13 @@
 		2065DF522DDD39CD00EAE056 = {
 			isa = PBXGroup;
 			children = (
+				20BA5A3D2DDD91400062AF72 /* Config */,
 				2065DF5D2DDD39CD00EAE056 /* CoffeeMap */,
 				2065DF772DDD39D000EAE056 /* CoffeeMapTests */,
 				2065DF812DDD39D000EAE056 /* CoffeeMapUITests */,
 				2065DF5C2DDD39CD00EAE056 /* Products */,
+				BC71445BB8344D4C2E9A7206 /* Pods */,
+				E5409A87A47F884F4FA7B580 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +131,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		BC71445BB8344D4C2E9A7206 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7EB2404D1EBA3DBFDB54676A /* Pods-CoffeeMap.debug.xcconfig */,
+				DCD6A5FDC12B07C80DFD4FA4 /* Pods-CoffeeMap.release.xcconfig */,
+				E412D07973893AF0E6613B9C /* Pods-CoffeeMap-CoffeeMapUITests.debug.xcconfig */,
+				3177F35AF35BFEE0FBD1A54D /* Pods-CoffeeMap-CoffeeMapUITests.release.xcconfig */,
+				1486CABC7130E3D37AA9775E /* Pods-CoffeeMapTests.debug.xcconfig */,
+				ADCE168C4A9CC36D373EB270 /* Pods-CoffeeMapTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E5409A87A47F884F4FA7B580 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B4D3EE877C73EF1DDB97DAC /* Pods_CoffeeMap.framework */,
+				694BFF8D0C975C2DE09673BD /* Pods_CoffeeMap_CoffeeMapUITests.framework */,
+				88CACE06CD5FCF7BD1181895 /* Pods_CoffeeMapTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,9 +161,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2065DF872DDD39D000EAE056 /* Build configuration list for PBXNativeTarget "CoffeeMap" */;
 			buildPhases = (
+				6108A80B13CD03F4423FB61F /* [CP] Check Pods Manifest.lock */,
 				2065DF572DDD39CD00EAE056 /* Sources */,
 				2065DF582DDD39CD00EAE056 /* Frameworks */,
 				2065DF592DDD39CD00EAE056 /* Resources */,
+				00DC62DCA2D8AD1629330F17 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,10 +173,9 @@
 			);
 			fileSystemSynchronizedGroups = (
 				2065DF5D2DDD39CD00EAE056 /* CoffeeMap */,
+				20BA5A3D2DDD91400062AF72 /* Config */,
 			);
 			name = CoffeeMap;
-			packageProductDependencies = (
-			);
 			productName = CoffeeMap;
 			productReference = 2065DF5B2DDD39CD00EAE056 /* CoffeeMap.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +184,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2065DF8C2DDD39D000EAE056 /* Build configuration list for PBXNativeTarget "CoffeeMapTests" */;
 			buildPhases = (
+				643BB6624A43B746A74D3881 /* [CP] Check Pods Manifest.lock */,
 				2065DF702DDD39D000EAE056 /* Sources */,
 				2065DF712DDD39D000EAE056 /* Frameworks */,
 				2065DF722DDD39D000EAE056 /* Resources */,
@@ -147,8 +198,6 @@
 				2065DF772DDD39D000EAE056 /* CoffeeMapTests */,
 			);
 			name = CoffeeMapTests;
-			packageProductDependencies = (
-			);
 			productName = CoffeeMapTests;
 			productReference = 2065DF742DDD39D000EAE056 /* CoffeeMapTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,9 +206,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2065DF8F2DDD39D000EAE056 /* Build configuration list for PBXNativeTarget "CoffeeMapUITests" */;
 			buildPhases = (
+				420E72B40D3DB55D7C8D44FB /* [CP] Check Pods Manifest.lock */,
 				2065DF7A2DDD39D000EAE056 /* Sources */,
 				2065DF7B2DDD39D000EAE056 /* Frameworks */,
 				2065DF7C2DDD39D000EAE056 /* Resources */,
+				7122C2AA559142B367C97B17 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,8 +221,6 @@
 				2065DF812DDD39D000EAE056 /* CoffeeMapUITests */,
 			);
 			name = CoffeeMapUITests;
-			packageProductDependencies = (
-			);
 			productName = CoffeeMapUITests;
 			productReference = 2065DF7E2DDD39D000EAE056 /* CoffeeMapUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -244,6 +293,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00DC62DCA2D8AD1629330F17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoffeeMap/Pods-CoffeeMap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoffeeMap/Pods-CoffeeMap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoffeeMap/Pods-CoffeeMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		420E72B40D3DB55D7C8D44FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoffeeMap-CoffeeMapUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6108A80B13CD03F4423FB61F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoffeeMap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		643BB6624A43B746A74D3881 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoffeeMapTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7122C2AA559142B367C97B17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoffeeMap-CoffeeMapUITests/Pods-CoffeeMap-CoffeeMapUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoffeeMap-CoffeeMapUITests/Pods-CoffeeMap-CoffeeMapUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoffeeMap-CoffeeMapUITests/Pods-CoffeeMap-CoffeeMapUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2065DF572DDD39CD00EAE056 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -284,19 +436,23 @@
 /* Begin XCBuildConfiguration section */
 		2065DF882DDD39D000EAE056 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EB2404D1EBA3DBFDB54676A /* Pods-CoffeeMap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WA299A5XRN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoffeeMap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoffeeMap;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,19 +468,23 @@
 		};
 		2065DF892DDD39D000EAE056 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCD6A5FDC12B07C80DFD4FA4 /* Pods-CoffeeMap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WA299A5XRN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoffeeMap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoffeeMap;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -340,6 +500,8 @@
 		};
 		2065DF8A2DDD39D000EAE056 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 20BA5A3D2DDD91400062AF72 /* Config */;
+			baseConfigurationReferenceRelativePath = BaseConfig.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -375,7 +537,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -403,6 +565,8 @@
 		};
 		2065DF8B2DDD39D000EAE056 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 20BA5A3D2DDD91400062AF72 /* Config */;
+			baseConfigurationReferenceRelativePath = BaseConfig.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -438,7 +602,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -459,6 +623,7 @@
 		};
 		2065DF8D2DDD39D000EAE056 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1486CABC7130E3D37AA9775E /* Pods-CoffeeMapTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -478,6 +643,7 @@
 		};
 		2065DF8E2DDD39D000EAE056 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADCE168C4A9CC36D373EB270 /* Pods-CoffeeMapTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -497,6 +663,7 @@
 		};
 		2065DF902DDD39D000EAE056 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E412D07973893AF0E6613B9C /* Pods-CoffeeMap-CoffeeMapUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -514,6 +681,7 @@
 		};
 		2065DF912DDD39D000EAE056 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3177F35AF35BFEE0FBD1A54D /* Pods-CoffeeMap-CoffeeMapUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

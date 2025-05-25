@@ -1,0 +1,14 @@
+//
+//  BaseConfig.xcconfig
+//  CoffeeMap
+//
+//  Created by Цховребова Яна on 21.05.2025.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_PROTOCOL = http
+API_HOST = 127.0.0.1
+API_PORT = 8080
+API_PATH = /api
