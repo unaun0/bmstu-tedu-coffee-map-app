@@ -420,7 +420,6 @@ extension CoffeeDetailViewController: UIScrollViewDelegate {
     private func setScrollImages() {
         let detCount = detailViewModel?.images.count ?? 0
         pageControl.numberOfPages = detCount
-//        print(detCount)
 
         for index in 0..<detCount {
             let image = UIImage(data: (detailViewModel?.images[index])!)
