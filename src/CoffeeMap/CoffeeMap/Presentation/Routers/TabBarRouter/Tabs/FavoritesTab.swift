@@ -9,9 +9,12 @@ import UIKit
 
 struct FavoritesTab {
     private let tag: Int
-
-    init(tag: Int) {
+    
+    private weak var viewControllerRef: FavoritesViewController?
+    
+    init(tag: Int, viewController: FavoritesViewController) {
         self.tag = tag
+        self.viewControllerRef = viewController
     }
 }
 
@@ -19,15 +22,16 @@ struct FavoritesTab {
 
 extension FavoritesTab: TabItem {
     var viewController: UIViewController {
-        UINavigationController(
-            rootViewController: FavoritesViewController()
-        )
+        guard let vc = viewControllerRef else {
+            return UIViewController()
+        }
+        return UINavigationController(rootViewController: vc)
     }
 
     var tabBarItem: UITabBarItem {
         UITabBarItem(
-            title: Constants.title,
-            image: Constants.image,
+            title: FavoritesTab.Constants.title,
+            image: FavoritesTab.Constants.image,
             tag: tag
         )
     }
