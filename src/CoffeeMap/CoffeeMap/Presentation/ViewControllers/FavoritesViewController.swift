@@ -204,16 +204,6 @@ extension FavoritesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension FavoritesViewController: UITableViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let height = scrollView.frame.size.height
-
-        if offsetY > contentHeight - height {
-            presenter.loadNextPage()
-        }
-    }
-
     func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath

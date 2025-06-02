@@ -210,5 +210,4 @@ extension AllCoffeeShopsViewController: UITableViewDelegate {
             modalVC.configure(with: viewModel)
         }
     }
-
 }
