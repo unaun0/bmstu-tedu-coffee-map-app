@@ -208,6 +208,7 @@ extension AllCoffeeShopsViewController: UITableViewDelegate {
                 print("Ошибка загрузки деталей кофейни")
                 return
             }
+//            print("viewModel")
             modalVC.configure(with: viewModel)
         }
     }
