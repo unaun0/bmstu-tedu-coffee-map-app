@@ -37,7 +37,7 @@ GET /api/coffeeshops
 
 `GET /api/coffeeshops`
 
-Получить вторую страницу с 3 элементами на странице:
+Получить вторую страницу с 6 элементами на странице:
 
 `GET /api/coffeeshops?page=2`
 
