@@ -9,9 +9,8 @@ import UIKit
 
 protocol AllCoffeeShopsViewProtocol: AnyObject {
     func showLoading(_ isLoading: Bool)
-    func showError(_ error: Error)
+    func showError(_ error: ErrorViewModel)
     func appendCoffeeShops(_ shops: [CoffeeShopViewModel])
-    func showCoffeeShopDetails(_ viewModel: CoffeeShopDetailViewModel)
 }
 
 final class AllCoffeeShopsViewController: UIViewController {
@@ -20,6 +19,7 @@ final class AllCoffeeShopsViewController: UIViewController {
 
     private let presenter: AllCoffeeShopsPresenterInput
     private var coffeeShops: [CoffeeShopViewModel] = []
+    private var isFirstLoad = true
 
     // MARK: - Subviews
 
@@ -38,6 +38,23 @@ final class AllCoffeeShopsViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
+    private lazy var errorView: ErrorView = {
+        let view = ErrorView()
+        view.isHidden = true
+        view.onRetry = { [weak self] in
+            self?.errorView.isHidden = true
+            self?.tableView.isHidden = false
+            self?.presenter.loadNextPage()
+        }
+        return view
+    }()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        indicator.color = UIColor(named: "CoffeeText") ?? .gray
+        return indicator
+    }()
+
     private let refreshControl = UIRefreshControl()
 
     // MARK: - Init
@@ -64,7 +81,7 @@ final class AllCoffeeShopsViewController: UIViewController {
 // MARK: - Setup UI
 
 extension AllCoffeeShopsViewController {
-    fileprivate func setupView() {
+    private func setupView() {
         title = "Все кофейни"
         view.backgroundColor = UIColor(named: "CoffeeBackground")
 
@@ -85,9 +102,19 @@ extension AllCoffeeShopsViewController {
             for: .valueChanged
         )
         view.addSubview(tableView)
+        view.addSubview(errorView)
+        view.addSubview(activityIndicator)
+
+        activityIndicator.startAnimating()
     }
 
-    fileprivate func setupConstraints() {
+    private func setupConstraints() {
+        setupActivityIndicatorConstraints()
+        setupTableConstraints()
+        setupErrorViewConstraints()
+    }
+
+    private func setupTableConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -97,6 +124,27 @@ extension AllCoffeeShopsViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
+
+    private func setupErrorViewConstraints() {
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
+
+    private func setupActivityIndicatorConstraints() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(
+                equalTo: view.centerYAnchor),
+        ])
+    }
+
 }
 
 // MARK: - Actions
@@ -113,15 +161,25 @@ extension AllCoffeeShopsViewController {
 
 extension AllCoffeeShopsViewController: AllCoffeeShopsViewProtocol {
     func showLoading(_ isLoading: Bool) {
-        if isLoading {
-            refreshControl.beginRefreshing()
+        if isFirstLoad {
+            if !isLoading {
+                activityIndicator.stopAnimating()
+                isFirstLoad = false
+            }
         } else {
-            refreshControl.endRefreshing()
+            if isLoading {
+                refreshControl.beginRefreshing()
+            } else {
+                refreshControl.endRefreshing()
+            }
         }
     }
 
-    func showError(_ error: Error) {
-        print("Ошибка загрузки кофеен: \(error.localizedDescription)")
+    func showError(_ error: ErrorViewModel) {
+        refreshControl.endRefreshing()
+        errorView.configure(with: error)
+        errorView.isHidden = false
+        tableView.isHidden = true
     }
 
     func appendCoffeeShops(_ shops: [CoffeeShopViewModel]) {
@@ -186,11 +244,9 @@ extension AllCoffeeShopsViewController: UITableViewDataSource {
 
 extension AllCoffeeShopsViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let height = scrollView.frame.size.height
-
-        if offsetY > contentHeight - height {
+        if scrollView.contentOffset.y > scrollView.contentSize.height
+            - scrollView.frame.size.height
+        {
             presenter.loadNextPage()
         }
     }
@@ -203,17 +259,26 @@ extension AllCoffeeShopsViewController: UITableViewDelegate {
         modalVC.modalPresentationStyle = .pageSheet
         modalVC.modalTransitionStyle = .coverVertical
         self.present(modalVC, animated: true)
-        presenter.coffeeShopDetails(id: coffeeShops[indexPath.row].id) { viewModel in
-            guard let viewModel = viewModel else {
-                print("Ошибка загрузки деталей кофейни")
-                return
-            }
-            modalVC.configure(with: viewModel)
-        }
-    }
 
-    func showCoffeeShopDetails(_ viewModel: CoffeeShopDetailViewModel) {
-       
-    
+        presenter.coffeeShopDetails(id: coffeeShops[indexPath.row].id) {
+            [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let viewModel):
+                modalVC.configure(with: viewModel)
+
+            case .failure:
+                modalVC.dismiss(animated: true)
+                self.showError(
+                    ErrorViewModel(
+                        type: .generic,
+                        title: "Ошибка",
+                        message: "Не удалось загрузить детали кофейни",
+                        canRetry: true
+                    )
+                )
+            }
+        }
     }
 }

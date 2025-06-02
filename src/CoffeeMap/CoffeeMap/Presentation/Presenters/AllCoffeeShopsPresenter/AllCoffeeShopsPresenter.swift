@@ -47,7 +47,7 @@ extension AllCoffeeShopsPresenter: AllCoffeeShopsPresenterInput {
                     id: id, isLiked: isLiked)
             } catch {
                 DispatchQueue.main.async {
-                    self?.view?.showError(error)
+                    self?.view?.showError(ErrorMapper.map(error))
                 }
             }
         }
@@ -55,23 +55,16 @@ extension AllCoffeeShopsPresenter: AllCoffeeShopsPresenterInput {
 
     func coffeeShopDetails(
         id: String,
-        completion: @escaping (CoffeeShopDetailViewModel?) -> Void
+        completion: @escaping (Result<CoffeeShopDetailViewModel, Error>) -> Void
     ) {
         Task {
             do {
                 let shop = try await useCase.fetchCoffeeShop(id: id)
                 let imageDataArray = shop.photos.map { $0.data }
-                let formattedRating =
-                    shop.rating != nil
-                    ? String(format: "%.1f", shop.rating ?? 0.0)
-                    : nil
+                let formattedRating = shop.rating.map { String(format: "%.1f", $0) }
 
                 let formattedWorkingHours = shop.workingHours.mapValues {
-                    workingTime in
-                    (
-                        startTime: workingTime.startTime,
-                        endTime: workingTime.endTime
-                    )
+                    (startTime: $0.startTime, endTime: $0.endTime)
                 }
 
                 let viewModel = CoffeeShopDetailViewModel(
@@ -87,11 +80,11 @@ extension AllCoffeeShopsPresenter: AllCoffeeShopsPresenterInput {
                 )
 
                 DispatchQueue.main.async {
-                    completion(viewModel)
+                    completion(.success(viewModel))
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completion(nil)
+                    completion(.failure(error))
                 }
             }
         }
@@ -105,19 +98,15 @@ extension AllCoffeeShopsPresenter: AllCoffeeShopsPresenterInput {
         Task {
             do {
                 let newShops = try await useCase.fetchCoffeeShops(
-                    page: page, updateLocation: reset)
-                if newShops.isEmpty {
-                    allLoaded = true
-                } else {
-                    currentPage += 1
-                }
+                    page: page,
+                    updateLocation: reset
+                )
                 let viewModels = newShops.map { shop -> CoffeeShopViewModel in
                     let imageData = shop.photos.first?.data
                     let distanceString: String?
                     if let distance = shop.distance {
                         if distance < 1 {
-                            let meters = Int(distance * 1000)
-                            distanceString = "\(meters) м"
+                            distanceString = "\(Int(distance * 1000)) м"
                         } else {
                             distanceString = String(format: "%.1f км", distance)
                         }
@@ -133,7 +122,11 @@ extension AllCoffeeShopsPresenter: AllCoffeeShopsPresenterInput {
                         isLiked: shop.isLiked
                     )
                 }
-
+                if newShops.isEmpty {
+                    allLoaded = true
+                } else {
+                    currentPage += 1
+                }
                 DispatchQueue.main.async { [weak self] in
                     self?.view?.appendCoffeeShops(viewModels)
                     self?.view?.showLoading(false)
@@ -141,7 +134,7 @@ extension AllCoffeeShopsPresenter: AllCoffeeShopsPresenterInput {
                 }
             } catch {
                 DispatchQueue.main.async { [weak self] in
-                    self?.view?.showError(error)
+                    self?.view?.showError(ErrorMapper.map(error))
                     self?.view?.showLoading(false)
                     self?.isLoading = false
                 }

@@ -12,6 +12,6 @@ protocol AllCoffeeShopsPresenterInput: AnyObject {
     func updateLikeStatus(id: String, isLiked: Bool)
     func coffeeShopDetails(
         id: String,
-        completion: @escaping (CoffeeShopDetailViewModel?) -> Void
+        completion: @escaping (Result<CoffeeShopDetailViewModel, Error>) -> Void
     )
 }
