@@ -1,13 +1,12 @@
 //
-//  AllCoffeeShopsUseCaseInput.swift
+//  FavoritiesUseCaseInput.swift
 //  CoffeeMap
 //
-//  Created by Цховребова Яна on 23.05.2025.
+//  Created by Козлов Павел on 02.06.2025.
 //
 
-protocol AllCoffeeShopsUseCaseInput {
+protocol FavoritiesUseCaseInput {
     func fetchCoffeeShops(
-        page: Int?,
         updateLocation: Bool
     ) async throws -> [CoffeeShopEntity]
     func updateLikeStatus(

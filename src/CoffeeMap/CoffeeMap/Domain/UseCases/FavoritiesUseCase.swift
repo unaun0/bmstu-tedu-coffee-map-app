@@ -1,13 +1,13 @@
 //
-//  AllCoffeeShopsUseCase.swift
+//  FavoritiesUseCase.swift
 //  CoffeeMap
 //
-//  Created by Цховребова Яна on 23.05.2025.
+//  Created by Козлов Павел on 02.06.2025.
 //
 
 import Foundation
 
-final class AllCoffeeShopsUseCase {
+final class FavoritiesUseCase {
     private let locationService: LocationServiceInput
     private let apiService: CoffeeShopAPIServiceInput
     private let imageLoader: ImageLoaderInput
@@ -29,23 +29,24 @@ final class AllCoffeeShopsUseCase {
     }
 }
 
-// MARK: - AllCoffeeShopsUseCaseInput
+// MARK: - FavoritiesUseCaseInput
 
-extension AllCoffeeShopsUseCase: AllCoffeeShopsUseCaseInput {
+extension FavoritiesUseCase: FavoritiesUseCaseInput {
     func fetchCoffeeShops(
-        page: Int?,
         updateLocation: Bool
     ) async throws -> [CoffeeShopEntity] {
+        
+        let likedId = try repository.fetchAll().map { $0.id }
+        var shops = try await apiService.fetchShops(
+            lat: nil, lon: nil, page: nil
+        ).filter { likedId.contains($0.id.uppercased()) }
+        
         let coordinate =
             try await
             (updateLocation
             ? locationService.refreshLocation()
             : locationService.getCurrentLocation())
-        var shops = try await apiService.fetchShops(
-            lat: coordinate.latitude,
-            lon: coordinate.longitude,
-            page: page
-        )
+        
         try await withThrowingTaskGroup(of: (Int, Data?).self) { group in
             for index in shops.indices {
                 let shopCoord = convertCoordinateToCLLocationCoordinate2D(

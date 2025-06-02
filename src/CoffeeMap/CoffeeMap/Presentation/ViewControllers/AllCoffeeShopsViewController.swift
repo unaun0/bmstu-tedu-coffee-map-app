@@ -11,8 +11,7 @@ protocol AllCoffeeShopsViewProtocol: AnyObject {
     func showLoading(_ isLoading: Bool)
     func showError(_ error: Error)
     func appendCoffeeShops(_ shops: [CoffeeShopViewModel])
-    func showCoffeeShopDetails(_ viewModel: CoffeeShopDetailViewModel)
-}
+ }
 
 final class AllCoffeeShopsViewController: UIViewController {
 
@@ -212,8 +211,4 @@ extension AllCoffeeShopsViewController: UITableViewDelegate {
         }
     }
 
-    func showCoffeeShopDetails(_ viewModel: CoffeeShopDetailViewModel) {
-       
-    
-    }
 }

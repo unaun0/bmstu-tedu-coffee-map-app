@@ -382,20 +382,23 @@ extension CoffeeDetailViewController {
     }
     
     private func setImageWithIcon(labelToSet: UILabel, imageSystemName: String, textMessage: String) {
-        let colorsConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor(named: "CoffeePrimary")!])
-        let sizeConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
-        let iconImage = UIImage(systemName: imageSystemName, withConfiguration: colorsConfig.applying(sizeConfig))
-        
-        let attributedString = NSMutableAttributedString(string: "", attributes: [:])
-
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = iconImage
-
-        let imageString = NSAttributedString(attachment: imageAttachment)
-        attributedString.append(imageString)
-        attributedString.append(NSAttributedString(string: textMessage))
-
-        labelToSet.attributedText = attributedString
+        if textMessage != "     " {
+            
+            let colorsConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor(named: "CoffeePrimary")!])
+            let sizeConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold)
+            let iconImage = UIImage(systemName: imageSystemName, withConfiguration: colorsConfig.applying(sizeConfig))
+            
+            let attributedString = NSMutableAttributedString(string: "", attributes: [:])
+            
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = iconImage
+            
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            attributedString.append(imageString)
+            attributedString.append(NSAttributedString(string: textMessage))
+            
+            labelToSet.attributedText = attributedString
+        }
     }
     
     private func setTimeInTimeStack() {
