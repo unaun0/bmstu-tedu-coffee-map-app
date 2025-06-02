@@ -37,10 +37,14 @@ extension FavoritiesUseCase: FavoritiesUseCaseInput {
     ) async throws -> [CoffeeShopEntity] {
         
         let likedId = try repository.fetchAll().map { $0.id }
-        var shops = try await apiService.fetchShops(
-            lat: nil, lon: nil, page: nil
-        ).filter { likedId.contains($0.id.uppercased()) }
-        
+        var shops: [CoffeeShopEntity] = []
+        for id in likedId {
+            shops.append(
+                try await apiService.fetchShopDetails(
+                    id: id
+                )
+            )
+        }
         let coordinate =
             try await
             (updateLocation

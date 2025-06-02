@@ -17,52 +17,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        let repository = CDCoffeeShopRepository()
-        let networkClient = NetworkClient()
-        let apiService = CoffeeShopAPIService(networkClient: networkClient)
-        let imageLoader = ImageLoader(networkClient: networkClient)
-        let locationService = LocationService()
-        let distanceService = DistanceService()
-        
-        let allCofeeShopsUseCase = AllCoffeeShopsUseCase(
-            locationService: locationService,
-            apiService: apiService,
-            imageLoader: imageLoader,
-            distanceService: distanceService,
-            repository: repository
-        )
-        
-        let presenter = AllCoffeeShopsPresenter(
-            useCase: allCofeeShopsUseCase)
-        let allCoffeeVC = AllCoffeeShopsViewController(
-            presenter: presenter)
-        presenter.view = allCoffeeVC
 
-        let allCoffeeTab = AllCoffeeTab(
-            tag: 0,
-            viewController: allCoffeeVC
-        )
-        
-        let favoritiesUseCase = FavoritiesUseCase(
-            locationService: locationService,
-            apiService: apiService,
-            imageLoader: imageLoader,
-            distanceService: distanceService,
-            repository: repository
-        )
-        let favoritesPresenter = FavoritesPresenter(
-            useCase: favoritiesUseCase)
-        let favoritesVC = FavoritesViewController(
-            presenter: favoritesPresenter)
-        favoritesPresenter.view = favoritesVC
-        
-        let favoritesTab = FavoritesTab(
-            tag: 1,
-            viewController: favoritesVC
-        )
-        
+        let container = DIContainer.shared.container
+
+        guard
+            let allCoffeeVC = container.resolve(AllCoffeeShopsViewController.self),
+            let favoritesVC = container.resolve(FavoritesViewController.self)
+        else {
+            fatalError("DIContainer: Failed to resolve ViewControllers")
+        }
+
+        let allCoffeeTab = AllCoffeeTab(tag: 0, viewController: allCoffeeVC)
+        let favoritesTab = FavoritesTab(tag: 1, viewController: favoritesVC)
+
         let coordinator = MainTabBarRouter(tabs: [allCoffeeTab, favoritesTab])
-        self.window?.rootViewController = MainTabBarController(coordinator: coordinator)
+        self.window?.rootViewController = MainTabBarController(
+            coordinator: coordinator
+        )
         self.window?.makeKeyAndVisible()
     }
 

@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from math import radians, cos, sin, sqrt, atan2
 
 coffee_shops = [
@@ -1010,7 +1010,8 @@ def get_coffeeshops():
 
 @app.route('/api/coffeeshops/<shop_id>', methods=['GET'])
 def get_coffeeshop_by_id(shop_id):
-    shop = next((shop for shop in coffee_shops if shop['id'] == shop_id), None)
+    shop_id = shop_id.lower()
+    shop = next((shop for shop in coffee_shops if shop['id'].lower() == shop_id), None)
     if shop is None:
         abort(404, description="Кофейня не найдена")
     return jsonify(shop)

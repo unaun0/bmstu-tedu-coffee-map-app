@@ -30,7 +30,7 @@ extension FavoritesPresenter: FavoritesPresenterInput {
                     id: id, isLiked: isLiked)
             } catch {
                 DispatchQueue.main.async {
-                    self?.view?.showError(error)
+                    self?.view?.showError(ErrorMapper.map(error))
                 }
             }
         }
@@ -57,7 +57,7 @@ extension FavoritesPresenter: FavoritesPresenterInput {
     
     func coffeeShopDetails(
         id: String,
-        completion: @escaping (CoffeeShopDetailViewModel?) -> Void
+        completion: @escaping (Result<CoffeeShopDetailViewModel, Error>) -> Void
     ) {
         Task {
             do {
@@ -89,11 +89,11 @@ extension FavoritesPresenter: FavoritesPresenterInput {
                 )
 
                 DispatchQueue.main.async {
-                    completion(viewModel)
+                    completion(.success(viewModel))
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completion(nil)
+                    completion(.failure(error))
                 }
             }
         }
@@ -148,7 +148,7 @@ extension FavoritesPresenter {
                 }
             } catch {
                 DispatchQueue.main.async { [weak self] in
-                    self?.view?.showError(error)
+                    self?.view?.showError(ErrorMapper.map(error))
                     self?.view?.showLoading(false)
                     self?.isLoading = false
                 }

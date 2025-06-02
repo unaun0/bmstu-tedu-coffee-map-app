@@ -9,9 +9,8 @@ import UIKit
 
 protocol FavoritesViewProtocol: AnyObject {
     func showLoading(_ isLoading: Bool)
-    func showError(_ error: Error)
+    func showError(_ error: ErrorViewModel)
     func appendCoffeeShops(_ shops: [CoffeeShopViewModel])
-//    func displayCoffeeShops(_ shops: [CoffeeShopViewModel])
 }
 
 final class FavoritesViewController: UIViewController {
@@ -35,13 +34,11 @@ final class FavoritesViewController: UIViewController {
         tableView.refreshControl = refreshControl
         return tableView
     }()
-    
     private let refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         control.tintColor = UIColor(named: "CoffeeText")
         return control
     }()
-    
     private let emptyStateView: EmptyStateView = {
         let view = EmptyStateView()
         view.configure(
@@ -49,6 +46,18 @@ final class FavoritesViewController: UIViewController {
             title: "Нет избранных кофеен",
             subtitle: "Добавляйте кофейни, нажимая на ♡ в списке"
         )
+        return view
+    }()
+    private lazy var errorView: ErrorView = {
+        let view = ErrorView()
+        view.isHidden = true
+        view.onRetry = { [weak self] in
+            self?.errorView.isHidden = true
+            self?.tableView.isHidden = false
+            self?.coffeeShops.removeAll()
+            self?.tableView.reloadData()
+            self?.presenter.viewDidLoad()
+        }
         return view
     }()
     
@@ -77,6 +86,7 @@ final class FavoritesViewController: UIViewController {
         view.backgroundColor = UIColor(named: "CoffeeBackground")
         view.addSubview(tableView)
         view.addSubview(emptyStateView)
+        view.addSubview(errorView)
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -91,6 +101,7 @@ final class FavoritesViewController: UIViewController {
     private func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         emptyStateView.translatesAutoresizingMaskIntoConstraints = false
+        errorView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -101,7 +112,12 @@ final class FavoritesViewController: UIViewController {
             emptyStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emptyStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -138,15 +154,11 @@ extension FavoritesViewController: FavoritesViewProtocol {
         isLoading ? refreshControl.beginRefreshing() : refreshControl.endRefreshing()
     }
     
-    func showError(_ error: Error) {
+    func showError(_ error: ErrorViewModel) {
         refreshControl.endRefreshing()
-        let alert = UIAlertController(
-            title: "Ошибка зашгрузки избранных",
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        errorView.configure(with: error)
+        errorView.isHidden = false
+        tableView.isHidden = true
     }
 }
 
@@ -212,12 +224,26 @@ extension FavoritesViewController: UITableViewDelegate {
         modalVC.modalPresentationStyle = .pageSheet
         modalVC.modalTransitionStyle = .coverVertical
         self.present(modalVC, animated: true)
-        presenter.coffeeShopDetails(id: coffeeShops[indexPath.row].id) { viewModel in
-            guard let viewModel = viewModel else {
-                print("Ошибка загрузки деталей кофейни")
-                return
+        
+        presenter.coffeeShopDetails(id: coffeeShops[indexPath.row].id) {
+            [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let viewModel):
+                modalVC.configure(with: viewModel)
+
+            case .failure:
+                modalVC.dismiss(animated: true)
+                self.showError(
+                    ErrorViewModel(
+                        type: .generic,
+                        title: "Ошибка",
+                        message: "Не удалось загрузить детали кофейни",
+                        canRetry: true
+                    )
+                )
             }
-            modalVC.configure(with: viewModel)
         }
     }
 }

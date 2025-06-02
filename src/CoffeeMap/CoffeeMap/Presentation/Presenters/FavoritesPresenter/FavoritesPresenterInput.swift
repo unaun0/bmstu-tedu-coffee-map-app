@@ -11,10 +11,8 @@ protocol FavoritesPresenterInput: AnyObject {
     func toggleFavorite(id: String)
     func loadNextPage()
     func updateLikeStatus(id: String, isLiked: Bool)
-
-    
     func coffeeShopDetails(
         id: String,
-        completion: @escaping (CoffeeShopDetailViewModel?) -> Void
+        completion: @escaping (Result<CoffeeShopDetailViewModel, Error>) -> Void
     )
 }

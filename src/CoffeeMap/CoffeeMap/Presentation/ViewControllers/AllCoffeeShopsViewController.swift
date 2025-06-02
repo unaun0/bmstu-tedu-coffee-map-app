@@ -44,7 +44,9 @@ final class AllCoffeeShopsViewController: UIViewController {
         view.onRetry = { [weak self] in
             self?.errorView.isHidden = true
             self?.tableView.isHidden = false
-            self?.presenter.loadNextPage()
+            self?.coffeeShops.removeAll()
+            self?.tableView.reloadData()
+            self?.presenter.viewDidLoad()
         }
         return view
     }()
