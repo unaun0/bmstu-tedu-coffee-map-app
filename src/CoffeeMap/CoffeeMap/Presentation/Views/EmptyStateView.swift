@@ -8,7 +8,9 @@
 import UIKit
 
 final class EmptyStateView: UIView {
+    
     // MARK: - UI Elements
+    
     private let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -53,6 +55,7 @@ final class EmptyStateView: UIView {
     }
     
     // MARK: - Configuration
+    
     func configure(image: UIImage?, title: String, subtitle: String) {
         imageView.image = image
         titleLabel.text = title
@@ -60,6 +63,7 @@ final class EmptyStateView: UIView {
     }
     
     // MARK: - Setup
+    
     private func setupView() {
         addSubview(stackView)
         stackView.addArrangedSubview(imageView)

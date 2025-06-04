@@ -38,6 +38,7 @@ final class AllCoffeeShopsViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
+
     private lazy var errorView: ErrorView = {
         let view = ErrorView()
         view.isHidden = true
@@ -50,6 +51,7 @@ final class AllCoffeeShopsViewController: UIViewController {
         }
         return view
     }()
+    
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.hidesWhenStopped = true

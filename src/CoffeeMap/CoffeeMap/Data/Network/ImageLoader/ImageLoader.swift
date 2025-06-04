@@ -23,7 +23,6 @@ extension ImageLoader: ImageLoaderInput {
             throw ImageLoaderError.invalidURL
         }
         let request = URLRequest(url: url)
-        
         return try await withCheckedThrowingContinuation { continuation in
             networkClient.download(request, progressHandler: nil) { result in
                 switch result {

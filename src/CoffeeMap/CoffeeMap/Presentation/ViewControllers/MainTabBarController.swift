@@ -56,9 +56,7 @@ private extension MainTabBarController {
 private extension MainTabBarController {
     enum Constants {
         static let tintColor = UIColor(named: "CoffeeText")
-        static let shadowColor = UIColor(
-            named: "CoffeeText"
-        )
+        static let shadowColor = UIColor(named: "CoffeeText")
         static let backgroundColor = UIColor(named: "CoffeeBackground")
     }
 }

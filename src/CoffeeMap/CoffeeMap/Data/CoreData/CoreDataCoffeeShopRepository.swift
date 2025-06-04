@@ -20,17 +20,15 @@ final class CDCoffeeShopRepository {
 
 extension CDCoffeeShopRepository: CoffeeShopRepositoryInput {
     func fetchAll() throws -> [CoffeeShopRepositoryDTO] {
-        let request: NSFetchRequest<CDCoffeeShop> = CDCoffeeShop.fetchRequest()
-        let cdShops = try context.fetch(request)
-        
-        return cdShops.compactMap { toDTO(cdShop: $0) }
+        try context.fetch(
+            CDCoffeeShop.fetchRequest()
+        ).compactMap { toDTO(cdShop: $0) }
     }
     
     func save(_ shop: CoffeeShopRepositoryDTO) throws {
         guard let uuid = UUID(uuidString: shop.id) else {
             throw CDError.invalidUUID
         }
-        
         let request: NSFetchRequest<CDCoffeeShop> = CDCoffeeShop.fetchRequest()
         request.predicate = NSPredicate(
             format: "id == %@",
@@ -63,9 +61,7 @@ extension CDCoffeeShopRepository: CoffeeShopRepositoryInput {
         guard let objectToDelete = cdShop else {
             throw CDError.objectNotFound
         }
-        
         context.delete(objectToDelete)
-        
         do {
             try context.save()
         } catch let error as NSError {

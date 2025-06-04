@@ -1,3 +1,5 @@
+#  Created by Цховребова Яна on 23.05.2025.
+
 from flask import Flask, request, jsonify, abort
 from math import radians, cos, sin, sqrt, atan2
 

@@ -52,7 +52,7 @@ struct ErrorMapper {
             return ErrorViewModel(
                 type: .network,
                 title: "Сетевая ошибка",
-                message: underlying.localizedDescription,
+                message: "Не удалось получить данные.",
                 canRetry: true
             )
         case .decodingError:

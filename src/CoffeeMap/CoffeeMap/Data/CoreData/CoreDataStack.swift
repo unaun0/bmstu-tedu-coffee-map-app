@@ -26,12 +26,11 @@ final class CDStack {
     }
 
     var context: NSManagedObjectContext {
-        return container.viewContext
+        container.viewContext
     }
 
     func saveContext() throws {
-        let context = container.viewContext
-        if context.hasChanges {
+        if container.viewContext.hasChanges {
             do {
                 try context.save()
             } catch let error as NSError {

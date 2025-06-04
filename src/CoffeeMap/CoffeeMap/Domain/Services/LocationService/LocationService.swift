@@ -76,8 +76,7 @@ final class LocationService: NSObject, LocationServiceInput {
 // MARK: - CLLocationManagerDelegate
 
 extension LocationService: CLLocationManagerDelegate {
-    
-    // Срабатывает после запроса разрешения
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus
         

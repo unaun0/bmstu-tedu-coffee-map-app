@@ -44,6 +44,7 @@ final class DIContainer {
         }.inObjectScope(.container)
 
         // MARK: - UseCases
+        
         container.register(AllCoffeeShopsUseCase.self) { r in
             AllCoffeeShopsUseCase(
                 locationService: r.resolve(LocationService.self)!,
@@ -65,6 +66,7 @@ final class DIContainer {
         }
 
         // MARK: - Presenters
+        
         container.register(AllCoffeeShopsPresenter.self) { r in
             let presenter = AllCoffeeShopsPresenter(
                 useCase: r.resolve(AllCoffeeShopsUseCase.self)!
@@ -80,6 +82,7 @@ final class DIContainer {
         }
 
         // MARK: - ViewControllers
+        
         container.register(AllCoffeeShopsViewController.self) { r in
             let presenter = r.resolve(AllCoffeeShopsPresenter.self)!
             let vc = AllCoffeeShopsViewController(presenter: presenter)
